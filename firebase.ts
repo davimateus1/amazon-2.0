@@ -1,4 +1,4 @@
-const firebaseConfig = {
+export const firebaseConfig = {
   apiKey: 'AIzaSyD_ry0Ojil0-Rldn1a7pUkqLjSA-gkaiEU',
   authDomain: 'amzn-2-0-davi.firebaseapp.com',
   projectId: 'amzn-2-0-davi',
