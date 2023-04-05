@@ -1,8 +1,9 @@
 import type { GetServerSideProps } from 'next';
 import Head from 'next/head';
 
-import { api } from '@/api';
-import { Header, Banner, ProductFeed } from '@/components';
+import { api } from '../api';
+import { Header, Banner, ProductFeed } from '../components';
+
 import { ProductProps } from '@/types';
 
 const Home = ({ products }: { products: ProductProps[] }): JSX.Element => {
