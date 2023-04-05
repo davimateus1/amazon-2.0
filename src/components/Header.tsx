@@ -2,11 +2,17 @@ import { MenuIcon, SearchIcon, ShoppingCartIcon } from '@heroicons/react/outline
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { signIn, signOut, useSession } from 'next-auth/react';
+import { useSelector } from 'react-redux';
+
+import { selectItems } from '../slices/basketSlice';
 
 export const Header = (): JSX.Element => {
   const { data: session } = useSession();
   const { name } = session?.user || {};
+
   const router = useRouter();
+
+  const items = useSelector(selectItems);
 
   return (
     <header>
@@ -56,7 +62,7 @@ export const Header = (): JSX.Element => {
             className='relative link flex items-center'
           >
             <span className='absolute top-0 right-0 md:right-10 h-4 w-4 bg-yellow-400 text-center rounded-full text-black font-bold'>
-              8
+              {items.length}
             </span>
             <ShoppingCartIcon className='h-10' />
             <p className='hidden md:inline font-extrabold md:text-sm mt-2'>Basket</p>

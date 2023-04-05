@@ -1,8 +1,12 @@
 import Image from 'next/image';
+import { useSelector } from 'react-redux';
 
 import { Header } from '../components';
+import { selectItems } from '../slices/basketSlice';
 
 const Checkout = (): JSX.Element => {
+  const items = useSelector(selectItems);
+
   return (
     <div className='bg-gray-100'>
       <Header />
@@ -19,7 +23,10 @@ const Checkout = (): JSX.Element => {
         </div>
 
         <div className='flex flex-col p-5 space-y-10 bg-white'>
-          <h1 className='text-3xl border-b pb-4'>Your Shopping Basket</h1>
+          <h1 className='text-3xl border-b pb-4'>
+            {items.length === 0 ? 'Your Amazon Basket is empty.' : 'Shopping Basket'}
+          </h1>
+          {items.map((item, i) => 'kkk')}
         </div>
       </main>
     </div>
