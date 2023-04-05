@@ -1,7 +1,7 @@
 import type { GetServerSideProps } from 'next';
 import Head from 'next/head';
 
-import { api } from '../api';
+import { api } from './api';
 import { Header, Banner, ProductFeed } from '../components';
 
 import { ProductProps } from '@/types';
