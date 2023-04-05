@@ -9,4 +9,5 @@ export type ProductProps = {
     rate: number;
     count: number;
   };
+  hasPrime?: boolean;
 };

@@ -25,6 +25,8 @@ export const Product = ({ product }: { product: ProductProps }): JSX.Element => 
       description: product.description,
       category: product.category,
       image: product.image,
+      rating,
+      hasPrime,
     };
 
     dispatch(addToBasket(productToAdd));
