@@ -14,7 +14,6 @@ export const Product = ({ product }: { product: ProductProps }): JSX.Element => 
 
   useEffect(() => {
     setRating(Math.floor(Math.random() * (MAX_RATING - MIN_RATING + 1)) + MIN_RATING);
-
     setHasPrime(Math.random() < 0.5);
   }, [product]);
 
