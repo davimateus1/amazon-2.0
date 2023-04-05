@@ -1,11 +1,13 @@
-import { Product } from '@/types';
+import { Product } from './Product';
 
-export const ProductFeed = ({ products }: { products: Product[] }): JSX.Element => {
+import { ProductProps } from '@/types';
+
+export const ProductFeed = ({ products }: { products: ProductProps[] }): JSX.Element => {
   return (
     <div>
       <h1>Product Feed...</h1>
       {products.map((product) => (
-        <div key={product.id}>{product.title}</div>
+        <Product product={product} key={product.id} />
       ))}
     </div>
   );

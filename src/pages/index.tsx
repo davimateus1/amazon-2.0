@@ -3,9 +3,9 @@ import Head from 'next/head';
 
 import { api } from '@/api';
 import { Header, Banner, ProductFeed } from '@/components';
-import { Product } from '@/types';
+import { ProductProps } from '@/types';
 
-const Home = ({ products }: { products: Product[] }): JSX.Element => {
+const Home = ({ products }: { products: ProductProps[] }): JSX.Element => {
   return (
     <div className='bg-gray-100'>
       <Head>
