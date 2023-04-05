@@ -1,16 +1,18 @@
+import Head from 'next/head';
 import Image from 'next/image';
 import { useSelector } from 'react-redux';
 
 import { CheckoutProduct, Header } from '../components';
 import { selectItems } from '../slices/basketSlice';
 
-import { ProductProps } from '@/types';
-
 const Checkout = (): JSX.Element => {
-  const items = useSelector(selectItems) as ProductProps[];
+  const items = useSelector(selectItems);
 
   return (
     <div className='bg-gray-100'>
+      <Head>
+        <title>Amazon 2.0 - Checkout</title>
+      </Head>
       <Header />
 
       <main className='lg:flex max-w-screen-2xl mx-auto'>

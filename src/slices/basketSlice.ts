@@ -1,7 +1,12 @@
 /* eslint-disable */
-import { createSlice } from '@reduxjs/toolkit';
+import { ProductProps } from '@/types';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-const initialState = {
+interface BasketState {
+  items: Array<ProductProps>;
+}
+
+const initialState: BasketState = {
   items: [],
 };
 
@@ -9,11 +14,16 @@ export const basketSlice = createSlice({
   name: 'basket',
   initialState,
   reducers: {
-    addToBasket: (state: any, action) => {
+    addToBasket: (state, action: PayloadAction<ProductProps>) => {
       state.items = [...state.items, action.payload];
     },
-    removeFromBasket: (state, action) => {
-      const index = state.items.findIndex((basketItem: any) => basketItem.id === action.payload.id);
+    removeFromBasket: (
+      state,
+      action: PayloadAction<{
+        id: number;
+      }>,
+    ) => {
+      const index = state.items.findIndex((basketItem) => basketItem.id === action.payload.id);
 
       let newBasket = [...state.items];
 
@@ -30,6 +40,6 @@ export const basketSlice = createSlice({
 
 export const { addToBasket, removeFromBasket } = basketSlice.actions;
 
-export const selectItems = (state: any) => state.basket.items;
+export const selectItems = (state: { basket: BasketState }) => state.basket.items;
 
 export default basketSlice.reducer;
