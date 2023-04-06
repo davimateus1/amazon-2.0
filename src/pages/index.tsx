@@ -3,7 +3,7 @@ import Head from 'next/head';
 
 import { Header, Banner, ProductFeed } from '../components';
 
-import { api } from './api';
+import { api } from './api/services';
 
 import { ProductProps } from '@/types';
 
