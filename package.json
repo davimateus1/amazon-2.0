@@ -11,6 +11,7 @@
   "dependencies": {
     "@heroicons/react": "v1",
     "@reduxjs/toolkit": "^1.9.3",
+    "@stripe/stripe-js": "^1.52.0",
     "@tailwindcss/line-clamp": "^0.4.4",
     "@types/node": "18.15.11",
     "@types/react-dom": "18.0.11",
@@ -27,6 +28,7 @@
     "react-dom": "18.2.0",
     "react-redux": "^8.0.5",
     "react-responsive-carousel": "^3.2.23",
+    "stripe": "^11.17.0",
     "typescript": "5.0.3"
   },
   "devDependencies": {

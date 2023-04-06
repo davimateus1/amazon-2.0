@@ -1,3 +1,4 @@
+import { loadStripe } from '@stripe/stripe-js';
 import Head from 'next/head';
 import Image from 'next/image';
 import { useSession } from 'next-auth/react';
@@ -7,10 +8,14 @@ import { useSelector } from 'react-redux';
 import { CheckoutProduct, Header } from '../components';
 import { selectItems, selectTotal } from '../slices/basketSlice';
 
+const stripePromise = loadStripe();
+
 const Checkout = (): JSX.Element => {
   const items = useSelector(selectItems);
   const total = useSelector(selectTotal);
   const { data: session } = useSession();
+
+  const createCheckoutSession = (): void => {};
 
   return (
     <div className='bg-gray-100'>
@@ -50,6 +55,8 @@ const Checkout = (): JSX.Element => {
               </h2>
 
               <button
+                role='link'
+                onClick={createCheckoutSession}
                 disabled={!session}
                 className={`button mt-2 ${
                   !session &&
