@@ -1,5 +1,6 @@
-import { GetServerSideProps } from 'next';
+import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import Head from 'next/head';
+import { getSession } from 'next-auth/react';
 
 import { Header, Banner, ProductFeed } from '../components';
 
@@ -24,12 +25,16 @@ const Home = ({ products }: { products: ProductProps[] }): JSX.Element => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async (
+  context: GetServerSidePropsContext,
+) => {
   const products = await api.get('/products').then((res) => res.data);
+  const session = await getSession(context);
 
   return {
     props: {
       products,
+      session,
     },
   };
 };
