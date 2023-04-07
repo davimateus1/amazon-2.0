@@ -10,11 +10,11 @@ import serviceAccount from '../../../permissions.json';
 
 import { CustomHeaders, Session } from '@/types';
 
-const service = serviceAccount.auth_provider_x509_cert_url;
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 
 const app = !admin.apps.length
   ? admin.initializeApp({
-      credential: admin.credential.cert(service),
+      credential: admin.credential.cert(serviceAccount as admin.ServiceAccount),
     })
   : admin.app();
 
