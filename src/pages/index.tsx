@@ -1,4 +1,4 @@
-import type { GetServerSideProps } from 'next';
+import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 
 import { Header, Banner, ProductFeed } from '../components';
