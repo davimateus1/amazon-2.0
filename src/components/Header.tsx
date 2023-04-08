@@ -42,6 +42,9 @@ export const Header = ({ setValue, ...rest }: HeaderProps): JSX.Element => {
             type='text'
             value={searchValue}
             onChange={(e): void => setSearchValue(e.target.value)}
+            onKeyDown={(e): void => {
+              if (e.key === 'Enter') handleSearch();
+            }}
             {...rest}
           />
           <SearchIcon className='h-12 p-4' onClick={handleSearch} />

@@ -10,8 +10,6 @@ import serviceAccount from '../../../permissions.json';
 
 import { CustomHeaders, Session } from '@/types';
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-
 const app = !admin.apps.length
   ? admin.initializeApp({
       credential: admin.credential.cert(serviceAccount as admin.ServiceAccount),
