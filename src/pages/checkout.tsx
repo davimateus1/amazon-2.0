@@ -58,7 +58,7 @@ const Checkout = (): JSX.Element => {
           </div>
         </div>
 
-        {items.length && (
+        {items.length > 0 && (
           <div className='flex flex-col bg-white p-10 shadow-md'>
             <>
               <h2 className='whitespace-nowrap'>
