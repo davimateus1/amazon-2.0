@@ -36,7 +36,7 @@ const Checkout = (): JSX.Element => {
       <Head>
         <title>Amazon 2.0 - Checkout</title>
       </Head>
-      <Header />
+      <Header disabled={true} />
 
       <main className='lg:flex max-w-screen-2xl mx-auto'>
         <div className='flex-grow m-5 shadow-sm'>

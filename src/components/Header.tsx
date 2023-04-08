@@ -2,17 +2,24 @@ import { MenuIcon, SearchIcon, ShoppingCartIcon } from '@heroicons/react/outline
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { signIn, signOut, useSession } from 'next-auth/react';
+import { InputHTMLAttributes, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { selectItems } from '../slices/basketSlice';
 
-export const Header = (): JSX.Element => {
+type HeaderProps = {
+  setValue?: (value: string) => void;
+} & InputHTMLAttributes<HTMLInputElement>;
+
+export const Header = ({ setValue, ...rest }: HeaderProps): JSX.Element => {
   const { data: session } = useSession();
   const { name } = session?.user || {};
+  const [searchValue, setSearchValue] = useState('');
 
   const router = useRouter();
-
   const items = useSelector(selectItems);
+
+  const handleSearch = (): void => setValue?.(searchValue);
 
   return (
     <header>
@@ -31,10 +38,13 @@ export const Header = (): JSX.Element => {
 
         <div className='hidden sm:flex items-center h-10 rounded-md flex-grow cursor-pointer bg-yellow-400 hover:bg-yellow-500'>
           <input
-            className='p-2 h-full w-6 flex-grow flex-shrink rounded-l-md focus:outline-none px-4'
+            className='p-2 h-full w-6 flex-grow flex-shrink rounded-l-md focus:outline-none px-4 disabled:cursor-not-allowed disabled:bg-gray-300'
             type='text'
+            value={searchValue}
+            onChange={(e): void => setSearchValue(e.target.value)}
+            {...rest}
           />
-          <SearchIcon className='h-12 p-4' />
+          <SearchIcon className='h-12 p-4' onClick={handleSearch} />
         </div>
 
         <div className='text-white flex items-center text-xs space-x-6 mx-6 whitespace-nowrap'>
