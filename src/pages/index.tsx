@@ -26,8 +26,8 @@ const Home = ({ products }: { products: ProductProps[] }): JSX.Element => {
 
       <main className='max-w-screen-2xl mx-auto'>
         <Banner />
-        {filteredProducts.length > 0 ? (
-          <ProductFeed products={value.trim().length > 0 ? filteredProducts : products} />
+        {filteredProducts.length ? (
+          <ProductFeed products={value.trim().length ? filteredProducts : products} />
         ) : (
           <div className='text-center text-2xl font-bold mt-8'>
             <p className='text-gray-500'>Oops!</p>
