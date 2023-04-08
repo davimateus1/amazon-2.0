@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import { ToastContainer } from 'react-toastify';
 
 import { Product } from './Product';
 
@@ -40,6 +41,7 @@ export const ProductFeed = ({ products }: { products: ProductProps[] }): JSX.Ele
           onClick={(): void => handleNavigateToProductDetail(product.id)}
         />
       ))}
+      <ToastContainer />
     </div>
   );
 };

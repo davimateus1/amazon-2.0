@@ -5,8 +5,10 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import Currency from 'react-currency-formatter';
 import { useDispatch } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-import { Header, Product } from '../../components';
+import { Header, Product, customToast } from '../../components';
 import { addToBasket } from '../../slices/basketSlice';
 import { api } from '../api/services';
 
@@ -38,6 +40,7 @@ const ProductDetail = ({ product, relatedProducts }: ProductDetailProps): JSX.El
     };
 
     dispatch(addToBasket(productToAdd));
+    customToast('success');
   };
 
   return (
@@ -86,6 +89,7 @@ const ProductDetail = ({ product, relatedProducts }: ProductDetailProps): JSX.El
           <button role='link' className='button mt-2' onClick={addItemToBasket}>
             Add to Basket
           </button>
+          <ToastContainer />
         </div>
       </main>
       <main className='lg:flex max-w-screen-2xl mx-auto'>

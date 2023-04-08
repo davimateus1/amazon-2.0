@@ -3,8 +3,11 @@ import Image from 'next/image';
 import { MouseEvent, useEffect, useState } from 'react';
 import Currency from 'react-currency-formatter';
 import { useDispatch } from 'react-redux';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { addToBasket } from '../slices/basketSlice';
+
+import { customToast } from './Toast';
 
 import { ProductProps } from '@/types';
 
@@ -36,6 +39,7 @@ export const Product = ({ product, onClick }: ProductType): JSX.Element => {
     };
 
     dispatch(addToBasket(productToAdd));
+    customToast('success');
   };
 
   useEffect(() => {
