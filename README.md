@@ -11,7 +11,7 @@ O Amazon 2.0 é um projeto de clone do famoso e-commerce Amazon, desenvolvido pa
 - [Nextauth](https://next-auth.js.org/): Biblioteca de autenticação para Next.js, que oferece recursos como autenticação social, JWT, e muito mais.
 - [Tailwind-css](https://tailwindcss.com/docs): Framework de design de interface de usuário baseado em classes para desenvolvimento rápido de interfaces modernas e responsivas.
 - [Stripe-payment](https://stripe.com/docs): Integração com o serviço de pagamentos Stripe para processamento de transações financeiras.
-- [Facebook-authentication](https://firebase.google.com/docs/auth/web/facebook-login): Autenticação de usuário com o Facebook usando o Firebase.
+- [Facebook-authentication](https://firebase.google.com/docs/auth/web/facebook-login): Autenticação de usuário com o Facebook usando o Meta.
 - [Google-authentication](https://firebase.google.com/docs/auth/web/google-signin): Autenticação de usuário com o Google usando o Firebase.
 - [Moment.js](https://momentjs.com/docs/): Biblioteca de manipulação de datas e horas em JavaScript.
 - [Prettier-eslint](https://prettier.io/docs/en/index.html): Ferramenta para formatar o código e garantir um estilo de codificação consistente.
@@ -38,11 +38,13 @@ O Amazon 2.0 é um projeto de clone do famoso e-commerce Amazon, desenvolvido pa
 ## Como rodar o projeto
 1. Clone o repositório para sua máquina local.
 2. Certifique-se de ter o Node.js e o NPM instalados em sua máquina.
-3. Crie uma nova aplicação no Firebase e configure as chaves de API e autenticação de acordo com as documentações do Firebase e do Stripe.
-4. No diretório do projeto, altere o arquivo `.env.example` para `.env.local` e adicione suas credenciais
-5. Execute `yarn` para instalar as dependências do projeto.
-6. Execute `yarn dev` para iniciar o servidor de desenvolvimento do Next.js.
-7. Acesse `http://localhost:3000` em seu navegador para visualizar a aplicação.
+3. Crie uma nova aplicação no Firebase e configure as chaves de API e autenticação de acordo com as documentações do Firebase.
+4. Crie uma nova aplicação no Facebook (developers) e configure as chaves de API e autenticação de acordo com as documentações do Meta.
+5. Crie uma nova aplicação no Stripe e configure as chaves de API de acordo com as documentações.
+6. No diretório do projeto, altere o arquivo `.env.example` para `.env.local` e adicione suas credenciais.
+7. Execute `yarn` para instalar as dependências do projeto.
+8. Execute `yarn dev` para iniciar o servidor de desenvolvimento do Next.js.
+9. Acesse `http://localhost:3000` em seu navegador para visualizar a aplicação.
 
 ## Desenvolvedor do Projeto
 
