@@ -11,7 +11,7 @@ import { OrderProps } from '@/types';
 
 const Orders = ({ orders }: { orders: OrderProps[] }): JSX.Element => {
   const { data } = useSession();
-  console.log(orders);
+
   return (
     <div className='bg-gray-100 h-screen'>
       <Head>
