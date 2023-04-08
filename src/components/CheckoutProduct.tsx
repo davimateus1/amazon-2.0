@@ -2,8 +2,11 @@ import { StarIcon } from '@heroicons/react/solid';
 import Image from 'next/image';
 import Currency from 'react-currency-formatter';
 import { useDispatch } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
 
 import { addToBasket, removeFromBasket } from '../slices/basketSlice';
+
+import { customToast } from './Toast';
 
 import { ProductProps } from '@/types';
 
@@ -23,10 +26,12 @@ export const CheckoutProduct = ({ product }: { product: ProductProps }): JSX.Ele
     };
 
     dispatch(addToBasket(productToAdd));
+    customToast('success');
   };
 
   const removeItemFromBasket = (): void => {
     dispatch(removeFromBasket({ id: product.id }));
+    customToast('warning');
   };
 
   return (
@@ -68,6 +73,7 @@ export const CheckoutProduct = ({ product }: { product: ProductProps }): JSX.Ele
           Remove from Basket
         </button>
       </div>
+      <ToastContainer />
     </div>
   );
 };

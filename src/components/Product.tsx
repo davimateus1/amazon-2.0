@@ -1,23 +1,32 @@
 import { StarIcon } from '@heroicons/react/solid';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { MouseEvent, useEffect, useState } from 'react';
 import Currency from 'react-currency-formatter';
 import { useDispatch } from 'react-redux';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { addToBasket } from '../slices/basketSlice';
+
+import { customToast } from './Toast';
 
 import { ProductProps } from '@/types';
 
 const MAX_RATING = 5;
 const MIN_RATING = 1;
 
-export const Product = ({ product }: { product: ProductProps }): JSX.Element => {
+type ProductType = {
+  product: ProductProps;
+  onClick: (event: MouseEvent<HTMLDivElement>) => void;
+};
+
+export const Product = ({ product, onClick }: ProductType): JSX.Element => {
   const [rating, setRating] = useState(0);
   const [hasPrime, setHasPrime] = useState(false);
 
   const dispatch = useDispatch();
 
-  const addItemToBasket = (): void => {
+  const addItemToBasket = (e: MouseEvent<HTMLButtonElement>): void => {
+    e.stopPropagation();
     const productToAdd = {
       id: product.id,
       title: product.title,
@@ -30,6 +39,7 @@ export const Product = ({ product }: { product: ProductProps }): JSX.Element => 
     };
 
     dispatch(addToBasket(productToAdd));
+    customToast('success');
   };
 
   useEffect(() => {
@@ -38,7 +48,7 @@ export const Product = ({ product }: { product: ProductProps }): JSX.Element => 
   }, [product]);
 
   return (
-    <div className='relative flex flex-col m-5 bg-white z-30 p-10'>
+    <div className='relative flex flex-col m-5 bg-white z-30 p-10 cursor-pointer' onClick={onClick}>
       <p className='absolute top-2 right-2 text-xs italic text-gray-400'>{product.category}</p>
 
       <Image src={product.image} height={200} width={200} objectFit='contain' alt='image' />
@@ -66,7 +76,7 @@ export const Product = ({ product }: { product: ProductProps }): JSX.Element => 
         </div>
       )}
 
-      <button onClick={addItemToBasket} className='mt-auto button'>
+      <button onClick={(e): void => addItemToBasket(e)} className='mt-auto button'>
         Add to Basket
       </button>
     </div>
