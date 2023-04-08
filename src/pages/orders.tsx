@@ -30,7 +30,7 @@ const Orders = ({ orders }: { orders: OrderProps[] }): JSX.Element => {
 
         {data ? <h2>{orders?.length ?? 0} Orders</h2> : <h2>Please sign in to see your orders</h2>}
 
-        {filteredOrders.length > 0 ? (
+        {filteredOrders?.length > 0 ? (
           <div className='mt-5 space-y-4'>
             {(value.length > 0 ? filteredOrders : orders)?.map((order) => (
               <Order order={order} key={order.id} />
