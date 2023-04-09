@@ -64,9 +64,11 @@ export const CheckoutProduct = ({ product }: { product: ProductProps }): JSX.Ele
         <div className='flex'>
           <p className='text-sm my-2 text-gray-400'>{product.rating.count} Ratings</p>
         </div>
+
         <div className='mb-5 font-bold'>
           <Currency quantity={product.price} currency='USD' />
         </div>
+
         {product?.hasPrime && (
           <div className='flex items-center space-x-2 -mt-5'>
             <img
