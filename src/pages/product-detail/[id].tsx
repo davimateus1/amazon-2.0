@@ -62,13 +62,15 @@ const ProductDetail = ({ product, relatedProducts }: ProductDetailProps): JSX.El
           </div>
           <div className='flex flex-col p-5 space-y-5 bg-white'>
             <h1 className='text-3xl pb-1'>{product.title}</h1>
-            <div className='flex border-b pb-3'>
-              {Array(product.rating)
-                .fill(product.rating)
+            <div className='flex border-b pb-3 items-center'>
+              {Array(Math.round(product.rating.rate))
+                .fill(0)
                 .map((_, i) => (
                   <StarIcon key={i} className='h-7 text-yellow-500' />
                 ))}
+              <p className='text-sm text-gray-400 ml-2'>{product.rating.count} Ratings</p>
             </div>
+
             <div className='mb-5 font-bold text-2xl'>
               <Currency quantity={product.price} currency='USD' />
             </div>
@@ -117,9 +119,9 @@ export const getServerSideProps: GetServerSideProps = async (
   const hasPrime = Math.random() < 0.5;
 
   const product: ProductProps = await api.get(`/products/${id}`).then((res) => res.data);
-  const products: ProductProps[] = await api.get('/products').then((res) => res.data);
-
-  const relatedProducts = products.filter((p) => p.category === product.category);
+  const relatedProducts: ProductProps[] = await api
+    .get(`/products/category/${product.category}`)
+    .then((res) => res.data);
 
   return {
     props: {

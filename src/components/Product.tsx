@@ -11,16 +11,12 @@ import { customToast } from './Toast';
 
 import { ProductProps } from '@/types';
 
-const MAX_RATING = 5;
-const MIN_RATING = 1;
-
 type ProductType = {
   product: ProductProps;
   onClick: (event: MouseEvent<HTMLDivElement>) => void;
 };
 
 export const Product = ({ product, onClick }: ProductType): JSX.Element => {
-  const [rating, setRating] = useState(0);
   const [hasPrime, setHasPrime] = useState(false);
 
   const dispatch = useDispatch();
@@ -34,7 +30,7 @@ export const Product = ({ product, onClick }: ProductType): JSX.Element => {
       description: product.description,
       category: product.category,
       image: product.image,
-      rating,
+      rating: product.rating,
       hasPrime,
     };
 
@@ -43,7 +39,6 @@ export const Product = ({ product, onClick }: ProductType): JSX.Element => {
   };
 
   useEffect(() => {
-    setRating(Math.floor(Math.random() * (MAX_RATING - MIN_RATING + 1)) + MIN_RATING);
     setHasPrime(Math.random() < 0.5);
   }, [product]);
 
@@ -56,11 +51,15 @@ export const Product = ({ product, onClick }: ProductType): JSX.Element => {
       <h4 className='my-3'>{product.title}</h4>
 
       <div className='flex'>
-        {Array(rating)
+        {Array(Math.round(product.rating.rate))
           .fill(0)
           .map((_, i) => (
             <StarIcon key={i} className='h-5 text-yellow-500' />
           ))}
+      </div>
+
+      <div className='flex'>
+        <p className='text-sm my-2 text-gray-400'>{product.rating.count} Ratings</p>
       </div>
 
       <p className='text-xs my-2 line-clamp-2'>{product.description}</p>

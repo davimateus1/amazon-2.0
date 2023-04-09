@@ -7,7 +7,10 @@ export type ProductProps = {
   description: string;
   category: string;
   image: string;
-  rating: number;
+  rating: {
+    rate: number;
+    count: number;
+  };
   hasPrime?: boolean;
 };
 

@@ -1,5 +1,6 @@
 import { StarIcon } from '@heroicons/react/solid';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import Currency from 'react-currency-formatter';
 import { useDispatch } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
@@ -12,6 +13,7 @@ import { ProductProps } from '@/types';
 
 export const CheckoutProduct = ({ product }: { product: ProductProps }): JSX.Element => {
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const addItemToBasket = (): void => {
     const productToAdd = {
@@ -34,24 +36,37 @@ export const CheckoutProduct = ({ product }: { product: ProductProps }): JSX.Ele
     customToast('warning');
   };
 
+  const handleNavigateToProductDetail = (id: number): void => {
+    router.push(`/product-detail/${id}`);
+  };
+
   return (
     <div className='grid grid-cols-5'>
-      <Image src={product.image} height={200} width={200} objectFit='contain' alt='image' />
+      <Image
+        src={product.image}
+        height={200}
+        width={200}
+        objectFit='contain'
+        alt='image'
+        onClick={(): void => handleNavigateToProductDetail(product.id)}
+        className='cursor-pointer'
+      />
       <div className='col-span-3 mx-5'>
         <p>{product.title}</p>
         <div className='flex'>
-          {Array(product.rating)
-            .fill(product.rating)
+          {Array(Math.round(product.rating.rate))
+            .fill(0)
             .map((_, i) => (
               <StarIcon key={i} className='h-5 text-yellow-500' />
             ))}
         </div>
-
         <p className='text-xs my-2 line-clamp-3'>{product.description}</p>
+        <div className='flex'>
+          <p className='text-sm my-2 text-gray-400'>{product.rating.count} Ratings</p>
+        </div>
         <div className='mb-5 font-bold'>
           <Currency quantity={product.price} currency='USD' />
         </div>
-
         {product?.hasPrime && (
           <div className='flex items-center space-x-2 -mt-5'>
             <img

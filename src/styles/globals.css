@@ -14,4 +14,20 @@
     rounded-sm focus:outline-none focus:ring-2
     focus:ring-yellow-500 active:from-yellow-500;
   }
+
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-200;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-yellow-300 rounded;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-yellow-400;
+  }
 }
